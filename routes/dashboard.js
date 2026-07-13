@@ -168,7 +168,7 @@ router.get('/data', async (req, res) => {
                     COALESCE((SELECT SUM(jumlah) FROM barang_keluar WHERE barang_id = b.barang_id AND tanggal >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)), 0) AS stok_terjual,
                     COALESCE((SELECT SUM(jumlah) FROM barang_masuk WHERE barang_id = b.barang_id AND tanggal >= DATE_SUB(CURRENT_DATE(), INTERVAL 30 DAY)), 0) AS stok_masuk
                 FROM barang b
-                WHERE b.user_id = ?
+                WHERE b.user_id = ? AND DATEDIFF(CURRENT_DATE(), b.created_at) >= 7
             ),
             Perhitungan1 AS (
                 SELECT 
