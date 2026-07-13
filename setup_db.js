@@ -19,9 +19,9 @@ connection.connect((err) => {
     console.log('Connected to DB for migration...');
     try {
         const schema = fs.readFileSync('schema.sql', 'utf8');
-        connection.query(schema, (err, results) => {
+        connection.query('SET FOREIGN_KEY_CHECKS = 0;\n' + schema + '\nSET FOREIGN_KEY_CHECKS = 1;', (err, results) => {
             if (err) {
-                console.log('Schema already exists or error:', err.message);
+                console.log('Schema error:', err.message);
             } else {
                 console.log('Database schema created successfully!');
             }
