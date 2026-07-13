@@ -72,7 +72,7 @@ router.post('/', verifikasiToken, async (req, res) => {
             // KALO BARANG BARU -> INSERT
             const generatedBarcode = barcode || `KB-${Date.now()}`;
             const [insertBarang] = await db.promise().query(
-                "INSERT INTO barang (user_id, barcode, nama_barang, harga_beli, harga_jual, stok) VALUES (?, ?, ?, ?, ?, ?)",
+                "INSERT INTO barang (user_id, barcode, nama_barang, harga_beli, harga_jual, stok, is_deleted) VALUES (?, ?, ?, ?, ?, ?, 0)",
                 [req.userId, generatedBarcode, nama_barang, harga_beli, harga_jual, jumlahStok]
             );
             finalBarangId = insertBarang.insertId;
