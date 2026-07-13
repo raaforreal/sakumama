@@ -31,7 +31,7 @@ app.use('/api/hutang', require('./routes/hutang'));
 app.use('/api/user', require('./routes/user'));
 
 // Semua route selain /api diarahkan ke React (untuk React Router)
-app.get('*', (req, res) => {
+app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public/frontend', 'index.html'));
 });
 
