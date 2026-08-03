@@ -30,7 +30,7 @@ app.use('/api/riwayat-keuangan', require('./routes/riwayat_keuangan'));
 app.use('/api/hutang', require('./routes/hutang'));
 app.use('/api/user', require('./routes/user'));
 
-// Semua route selain /api diarahkan ke React (untuk React Router)
+// Semua route selain /api
 app.use((req, res) => {
     res.sendFile(path.join(__dirname, 'public/frontend', 'index.html'));
 });
